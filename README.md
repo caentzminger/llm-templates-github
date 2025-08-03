@@ -25,6 +25,33 @@ e.g. to try [this summarize.yaml](https://github.com/simonw/llm-templates/blob/m
 ```bash
 curl -L https://llm.datasette.io/ | llm -t gh:simonw/summarize
 ```
+
+### Private Repository Support
+
+This plugin supports loading templates from private GitHub repositories. To use this feature, you need to provide a GitHub personal access token via environment variable:
+
+```bash
+export GITHUB_TOKEN="your-github-token"
+# or
+export LLM_GITHUB_TOKEN="your-github-token"
+```
+
+Then you can use templates from private repositories just like public ones:
+
+```bash
+llm -t gh:yourorg/private-repo/template-name
+```
+
+#### Creating a GitHub Token
+
+1. Go to [GitHub Settings > Developer settings > Personal access tokens](https://github.com/settings/tokens)
+2. Click "Generate new token" (classic or fine-grained)
+3. For classic tokens: Select the `repo` scope
+4. For fine-grained tokens: Grant "Contents" repository permissions for the repositories you want to access
+5. Copy the token and set it as an environment variable
+
+**Security Note**: Keep your GitHub token secure and never commit it to version control.
+
 ## Development
 
 To set up this plugin locally, first checkout the code. Then create a new virtual environment:
